@@ -1,25 +1,27 @@
-import {Request, Response} from "express";
-import { CityService} from "../services/CityService";
+import { Request, Response } from 'express';
 
-const cityService = new CityService();
+import { CityService } from '../services/CityService';
 
-export class CityController{
-    async create(request: Request, response: Response){
-        try{
-            const result = await cityService.create(request.body);
-            return response.status(201).json(result);
-        } catch(err){
-            return response.status(400).json(err);
-        }
+class CityController {
+  cityService = new CityService();
+
+  async create(request: Request, response: Response) {
+    try {
+      const result = await this.cityService.create(request.body);
+      return response.status(201).json(result);
+    } catch (err) {
+      return response.status(400).json(err);
     }
+  }
 
-    async find(request: Request, response: Response){
-        try{
-            const result = await cityService.find(request.query);
-            return response.status(201).json(result);
-        } catch(err){
-            return response.status(400).json(err);
-        }
+  async find(request: Request, response: Response) {
+    try {
+      const result = await this.cityService.find(request.query);
+      return response.status(201).json(result);
+    } catch (err) {
+      return response.status(400).json(err);
     }
-
+  }
 }
+
+export { CityController };

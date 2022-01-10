@@ -1,24 +1,16 @@
-import { CityRepository } from "../repository/CityRepository";
-import  {City} from "../entities/City";
-const cityRepository = new CityRepository();
-type CityRequest ={
-    name: string;
-    description: string;
-}
+import { CityRepository } from '../repository/CityRepository';
+import { City } from '../entities/City';
 
 export class CityService {
-    async create(payload) : Promise<City | Error> {
+  cityRepository = new CityRepository();
 
-        const city = cityRepository.create(payload);
+  async create(payload): Promise<City | Error> {
+    const city = this.cityRepository.create(payload);
+    return city;
+  }
 
-        return city;
-        
-    }
-    async find(payload) : Promise<City[] | Error> {
-
-        const city = cityRepository.find(payload);
-
-        return city;
-        
-    }
+  async find(payload): Promise<City[] | Error> {
+    const city = this.cityRepository.find(payload);
+    return city;
+  }
 }

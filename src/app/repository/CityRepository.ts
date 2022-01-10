@@ -1,20 +1,20 @@
-import { getRepository } from 'typeorm';
-import { City } from '../entities/City';
+import {getRepository} from 'typeorm';
+import {City} from '../entities/City';
 
 class CityRepository {
-  repo = getRepository(City);
-
   async create(payload) : Promise<City | Error > {
-    const { name, state } = payload;
-    const city = this.repo.create({ name, state });
-    await this.repo.save(city);
+    const repo = getRepository(City);
+    const {name, state} = payload;
+    const city = repo.create({name, state});
+    await repo.save(city);
     return city;
   }
 
   async find(payload) : Promise<City[] | Error > {
-    const cities = this.repo.find(payload);
+    const repo = getRepository(City);
+    const cities = await repo.find(payload);
     return cities;
   }
 }
 
-export { CityRepository };
+export {CityRepository};

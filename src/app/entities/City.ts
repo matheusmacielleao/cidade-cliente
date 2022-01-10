@@ -1,7 +1,7 @@
 import {
   Entity, Column, PrimaryColumn,
 } from 'typeorm';
-import { v4 as uuid } from 'uuid';
+import {v4 as uuid} from 'uuid';
 
 @Entity('cities')
 class City {
@@ -21,4 +21,4 @@ class City {
   }
 }
 
-export { City };
+export {City};

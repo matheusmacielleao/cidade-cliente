@@ -16,4 +16,11 @@ export class CityRepository {
         return city;
         
     }
+    async find(payload) : Promise<City[] | Error > {
+        
+        const repo = getRepository(City);
+        const cities = repo.find(payload);
+        return cities;
+        
+    }
 }

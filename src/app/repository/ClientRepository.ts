@@ -21,6 +21,15 @@ class ClientRepository {
     const client = await repo.delete({'id': payload});
     return client;
   }
+
+  async updateName(id: string, name: string) : Promise<Client | Error> {
+    const repo = getRepository(Client);
+    const client = await repo.findOne(id);
+    client.name = name ? name:client.name;
+    await repo.save(client);
+
+    return client;
+  }
 }
 
 export {ClientRepository};

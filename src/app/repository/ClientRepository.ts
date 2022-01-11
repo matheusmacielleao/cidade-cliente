@@ -10,10 +10,13 @@ class ClientRepository {
     return client;
   }
 
-  async find(payload) : Promise<Client[] | Error > {
+  async find(payload) : Promise<{} | Error > {
     const repo = getRepository(Client);
-    const clients = await repo.find(payload);
-    return clients;
+    const {page = 1, limit = 100, ...query} = payload;
+    const filter = {query, skip: ((page-1)*limit), take: limit};
+    const [clients, total] = await repo.findAndCount(filter);
+    return {clients,
+      limit, total, offset: page, skip: (page-1)*limit};
   }
 
   async delete(payload) {

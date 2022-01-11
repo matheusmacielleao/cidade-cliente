@@ -9,7 +9,7 @@ export class ClientService {
     return client;
   }
 
-  async find(payload): Promise<Client[] | Error> {
+  async find(payload): Promise<{} | Error> {
     const client = await clientRepository.find(payload);
     return client;
   }

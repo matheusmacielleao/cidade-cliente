@@ -4,8 +4,8 @@ import {Client} from '../entities/Client';
 class ClientRepository {
   async create(payload) : Promise<Client | Error > {
     const repo = getRepository(Client);
-    const {name, sex, birthdate, cityId} = payload;
-    const client = repo.create({name, sex, birthdate, cityId});
+    const {name, gender, birthdate, cityId} = payload;
+    const client = repo.create({name, gender, birthdate, cityId});
     await repo.save(client);
     return client;
   }

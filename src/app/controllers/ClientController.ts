@@ -30,6 +30,15 @@ class ClientController {
       return response.status(400).json(err);
     }
   }
+
+  async updateName(request: Request, response: Response) {
+    try {
+      await clientService.updateName(request.params.id, request.body.name);
+      return response.status(204).json({});
+    } catch (err) {
+      return response.status(400).json(err);
+    }
+  }
 }
 
 export {ClientController};

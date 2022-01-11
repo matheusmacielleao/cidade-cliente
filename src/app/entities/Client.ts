@@ -12,7 +12,7 @@ class Client {
     name: string;
 
   @Column()
-    sex: string;
+    gender: string;
 
   @Column()
     cityId: string;

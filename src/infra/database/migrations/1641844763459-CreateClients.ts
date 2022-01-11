@@ -16,7 +16,7 @@ export class CreateClients1641844763459 implements MigrationInterface {
               type: 'varchar',
             },
             {
-              name: 'sex',
+              name: 'gender',
               type: 'char',
             },
             {

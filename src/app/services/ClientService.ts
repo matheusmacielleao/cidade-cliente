@@ -17,4 +17,8 @@ export class ClientService {
     const client = await clientRepository.delete(payload);
     return client;
   }
+  async updateName(id, name) {
+    const client = await clientRepository.updateName(id, name);
+    return client;
+  }
 }

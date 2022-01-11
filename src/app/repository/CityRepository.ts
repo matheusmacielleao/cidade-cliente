@@ -10,10 +10,13 @@ class CityRepository {
     return city;
   }
 
-  async find(payload) : Promise<City[] | Error > {
+  async find(payload) : Promise<{} | Error > {
     const repo = getRepository(City);
-    const cities = await repo.find(payload);
-    return cities;
+    const {page = 1, limit = 100, ...query} = payload;
+    const filter = {query, skip: ((page-1)*limit), take: limit};
+    const [cities, total] = await repo.findAndCount(filter);
+    return {cities,
+      limit, total, offset: page, skip: (page-1)*limit};
   }
 }
 

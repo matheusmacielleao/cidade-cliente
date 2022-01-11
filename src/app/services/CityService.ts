@@ -9,7 +9,7 @@ export class CityService {
     return city;
   }
 
-  async find(payload): Promise<City[] | Error> {
+  async find(payload): Promise<{} | Error> {
     const city = await cityRepository.find(payload);
     return city;
   }

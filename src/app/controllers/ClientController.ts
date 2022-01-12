@@ -27,7 +27,7 @@ class ClientController {
       await clientService.delete(request.params.id);
       return response.status(204).json({});
     } catch (err) {
-      return response.status(400).json(err);
+      return response.status(404).json(err);
     }
   }
 

@@ -1,10 +1,15 @@
 import {getRepository} from 'typeorm';
 import {City} from '../entities/City';
+import {CityEqualName} from '../errors/CityEqualName';
 
 class CityRepository {
   async create(payload) : Promise<City | Error > {
     const repo = getRepository(City);
     const {name, state} = payload;
+    const exists = await repo.findOne({name: name});
+    if (exists) {
+      throw new CityEqualName();
+    }
     const city = repo.create({name, state});
     await repo.save(city);
     return city;

@@ -1,5 +1,6 @@
 import {getRepository} from 'typeorm';
 import {Client} from '../entities/Client';
+import {NotExists} from '../errors/NotExists';
 
 class ClientRepository {
   async create(payload) : Promise<Client | Error > {
@@ -21,8 +22,12 @@ class ClientRepository {
 
   async delete(payload) {
     const repo = getRepository(Client);
-    const client = await repo.delete({'id': payload});
-    return client;
+    const existClient = await repo.findOne({'id': payload});
+    if (!existClient) {
+      throw new NotExists('Client');
+    }
+    const deleteResult = await repo.delete({'id': payload});
+    return deleteResult;
   }
 
   async updateName(id: string, name: string) : Promise<Client | Error> {

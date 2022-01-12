@@ -1,19 +1,35 @@
 import request from 'supertest';
+import {getConnection} from 'typeorm';
 import {app} from '../../src/app';
+import {connection} from '../../src/infra/database';
+
+beforeAll(async () => {
+  await connection();
+});
+
+afterEach(async () => {
+  const data = getConnection().entityMetadatas;
+  let repo;
+  data.forEach(async (entity) => {
+    repo = getConnection().getRepository(entity.name);
+    await repo.delete({});
+  });
+});
+
 
 describe('src :: api :: controllers :: city :: create', () => {
   test('should create a city', async () => {
     const teste = {
-      name: 'Fortaleza',
-      state: 'CE',
+      'name': 'Pernanbuco',
+      'state': 'CE',
     };
-    const response = await request(app).post('city/').send(teste);
+    const response = await request(app).post('/cities').send(teste);
 
     const {body} = response;
 
     expect(response.status).toBe(201);
-    expect(body._id).toBeDefined();
-    expect(body.name).toBe('Fortaleza');
+    expect(body.id).toBeDefined();
+    expect(body.name).toBe('Pernanbuco');
     expect(body.state).toBe('CE');
   });
 });

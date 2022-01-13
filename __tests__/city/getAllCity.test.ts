@@ -7,25 +7,15 @@ beforeAll(async () => {
   await connection();
 });
 
-afterEach(async () => {
-  const data = getConnection().entityMetadatas;
-  let repo;
-  data.forEach(async (entity) => {
-    repo = getConnection().getRepository(entity.name);
-    await repo.delete({});
-  });
-});
-
-
-describe('src :: api :: controllers :: city :: create', () => {
+describe('src :: api :: controllers :: city :: find', () => {
   test('should return a list of cities', async () => {
     const teste = {
-      'name': 'Pernanbuco',
+      'name': 'Recife',
       'state': 'CE',
     };
     await request(app).post('/cities').send(teste);
 
-    const response = request(app).get('/cities');
+    const response = await request(app).get('/cities');
 
     const {body} = response;
 

@@ -7,15 +7,6 @@ beforeAll(async () => {
   await connection();
 });
 
-afterEach(async () => {
-  const data = getConnection().entityMetadatas;
-  let repo;
-  data.forEach(async (entity) => {
-    repo = getConnection().getRepository(entity.name);
-    await repo.delete({});
-  });
-});
-
 
 describe('src :: api :: controllers :: client :: create', () => {
   test('should create a client', async () => {
@@ -37,6 +28,6 @@ describe('src :: api :: controllers :: client :: create', () => {
     expect(body.name).toBe('Matheus');
     expect(body.gender).toBe('M');
     expect(body.cityId).toBe(id);
-    expect(body.birthdate).toBe('2014-01-01');
+    expect(body.birthdate).toBe('2014-01-01T00:00:00.000Z');
   });
 });

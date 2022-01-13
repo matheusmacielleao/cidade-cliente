@@ -7,15 +7,6 @@ beforeAll(async () => {
   await connection();
 });
 
-afterEach(async () => {
-  const data = getConnection().entityMetadatas;
-  let repo;
-  data.forEach(async (entity) => {
-    repo = getConnection().getRepository(entity.name);
-    await repo.delete({});
-  });
-});
-
 
 describe('src :: api :: controllers :: city :: create', () => {
   test('should create a city', async () => {

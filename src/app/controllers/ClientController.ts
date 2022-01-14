@@ -1,4 +1,5 @@
 import {Request, Response} from 'express';
+import {serialize} from '../serializer/clientSerializer';
 
 import {ClientService} from '../services/ClientService';
 
@@ -8,7 +9,7 @@ class ClientController {
   async create(request: Request, response: Response) {
     try {
       const result = await clientService.create(request.body);
-      return response.status(201).json(result);
+      return response.status(201).json(serialize(result));
     } catch (err) {
       return response.status(400).json(err);
     }
@@ -34,7 +35,7 @@ class ClientController {
   async updateName(request: Request, response: Response) {
     try {
       const result = await clientService.updateName(request.params.id, request.body.name);
-      return response.status(200).json(result);
+      return response.status(200).json(serialize(result));
     } catch (err) {
       return response.status(400).json(err);
     }

@@ -1,10 +1,11 @@
 import {ClientRepository} from '../repository/ClientRepository';
-import {Client} from '../entities/Client';
+import moment from 'moment';
 
 const clientRepository = new ClientRepository();
 
 export class ClientService {
-  async create(payload): Promise<Client | Error> {
+  async create(payload): Promise<any> {
+    payload.birthdate = moment(payload.birthdate, 'DD/MM/YYYY').format('YYYY-MM-DD');
     const client = await clientRepository.create(payload);
     return client;
   }
@@ -17,7 +18,7 @@ export class ClientService {
     const client = await clientRepository.delete(payload);
     return client;
   }
-  async updateName(id, name) {
+  async updateName(id:string, name:string): Promise<any> {
     if (!name) {
       throw new Error('name must be provided');
     }

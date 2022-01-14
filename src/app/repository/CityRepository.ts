@@ -3,7 +3,7 @@ import {City} from '../entities/City';
 import {CityEqualName} from '../errors/CityEqualName';
 
 class CityRepository {
-  async create(payload) : Promise<City | Error > {
+  async create(payload ) : Promise<City | Error > {
     const repo = getConnection(process.env.CONNECTION_NAME).getRepository(City);
     const {name, state} = payload;
     const exists = await repo.findOne({name: name});

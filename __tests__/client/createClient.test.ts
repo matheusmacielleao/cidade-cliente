@@ -24,7 +24,7 @@ describe('src :: api :: controllers :: client :: create', () => {
       'name': 'Matheus',
       'gender': 'M',
       'cityId': id,
-      'birthdate': '2014-01-01',
+      'birthdate': '01/01/2014',
     };
 
     const response = await request(app).post('/clients').send(teste);
@@ -35,7 +35,7 @@ describe('src :: api :: controllers :: client :: create', () => {
     expect(body.name).toBe('Matheus');
     expect(body.gender).toBe('M');
     expect(body.cityId).toBe(id);
-    expect(body.birthdate).toBe('2014-01-01T00:00:00.000Z');
+    expect(body.birthdate).toBe('01/01/2014');
   });
 
   test('should not creat a client with missing atributes', async () => {

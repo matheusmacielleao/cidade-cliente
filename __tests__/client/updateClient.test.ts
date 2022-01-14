@@ -25,7 +25,7 @@ describe('src :: api :: controllers :: client :: updateName', () => {
       'name': 'Matheus',
       'gender': 'M',
       'cityId': id,
-      'birthdate': '2014-01-01',
+      'birthdate': '01/01/2014',
     };
 
     const response = await request(app).post('/clients').send(teste);

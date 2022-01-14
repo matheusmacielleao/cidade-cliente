@@ -1,6 +1,7 @@
 import {getConnection} from 'typeorm';
 import {Client} from '../entities/Client';
 import {NotExists} from '../errors/NotExists';
+import {paginateSerialize} from '../serializer/clientSerializer';
 
 class ClientRepository {
   async create(payload) : Promise<Client | Error > {
@@ -16,8 +17,8 @@ class ClientRepository {
     const {page = 1, limit = 100, ...where} = payload;
     const filter = {where, skip: ((page-1)*limit), take: limit};
     const [clients, total] = await repo.findAndCount(filter);
-    return {clients,
-      limit, total, offset: page, skip: (page-1)*limit};
+    return paginateSerialize({clients,
+      limit, total, offset: page, skip: (page-1)*limit});
   }
 
   async delete(payload) {

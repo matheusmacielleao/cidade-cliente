@@ -32,4 +32,9 @@ describe('src :: api :: controllers :: client :: create', () => {
     const responseDelete = await request(app).delete(`/clients/${idClient}`);
     expect(responseDelete.status).toBe(204);
   });
+
+  test('should return 404 when id does not correspond to any client', async () => {
+    const responseDelete = await request(app).delete(`/clients/qualquerid`);
+    expect(responseDelete.status).toBe(404);
+  });
 });

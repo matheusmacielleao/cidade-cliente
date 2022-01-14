@@ -17,11 +17,11 @@ afterAll(async () => {
 
 describe('src :: api :: controllers :: city :: create', () => {
   test('should create a city', async () => {
-    const teste = {
+    const city = {
       'name': 'Pernanbuco',
       'state': 'CE',
     };
-    const response = await request(app).post('/cities').send(teste);
+    const response = await request(app).post('/cities').send(city);
 
     const {body} = response;
 
@@ -29,5 +29,16 @@ describe('src :: api :: controllers :: city :: create', () => {
     expect(body.id).toBeDefined();
     expect(body.name).toBe('Pernanbuco');
     expect(body.state).toBe('CE');
+  });
+
+  test('should not create a city with the same name and state', async () => {
+    const city = {
+      'name': 'Pernanbuco',
+      'state': 'CE',
+    };
+    await request(app).post('/cities').send(city);
+    const response = await request(app).post('/cities').send(city);
+    
+    expect(response.status).toBe(400);
   });
 });

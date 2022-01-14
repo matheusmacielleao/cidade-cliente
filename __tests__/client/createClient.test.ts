@@ -19,7 +19,6 @@ describe('src :: api :: controllers :: client :: create', () => {
   test('should create a client', async () => {
     const responseCity = await request(app).post('/cities').send(
         {name: 'Brasilia', state: 'DF'});
-    console.log(responseCity.body);
     const {id} = responseCity.body;
     const teste = {
       'name': 'Matheus',
@@ -38,4 +37,18 @@ describe('src :: api :: controllers :: client :: create', () => {
     expect(body.cityId).toBe(id);
     expect(body.birthdate).toBe('2014-01-01T00:00:00.000Z');
   });
+
+  test('should not creat a client with missing atributes', async () => {
+    const responseCity = await request(app).post('/cities').send(
+        {name: 'Brasilia', state: 'DF'});
+    const {id} = responseCity.body;
+    const teste = {
+      'name': 'Matheus',
+    };
+
+    const response = await request(app).post('/clients').send(teste);
+    expect(response.status).toBe(400);
+  });
+
+
 });

@@ -1,0 +1,112 @@
+{
+	"info": {
+		"_postman_id": "30a180ef-402c-4709-8fa7-884674d9ec2d",
+		"name": "crudsql",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "cities",
+			"item": [
+				{
+					"name": "createCity",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"name\": \"Pernanbuco\",\r\n\"state\": \"CE\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:3000/cities"
+					},
+					"response": []
+				},
+				{
+					"name": "getCities",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:3000/cities"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "clients",
+			"item": [
+				{
+					"name": "createClient",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Matheus Maciel Leão\",\r\n    \"gender\": \"M\",\r\n    \"cityId\": \"dd45b3f7-4960-4bae-81f1-56329c0e213f\",\r\n    \"birthdate\": \"01/01/2014\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:3000/clients"
+					},
+					"response": []
+				},
+				{
+					"name": "getClient",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Matheus Maciel Leão\",\r\n    \"gender\": \"M\",\r\n    \"cityId\": \"dd45b3f7-4960-4bae-81f1-56329c0e213f\",\r\n    \"birthdate\": \"01/01/2014\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:3000/clients"
+					},
+					"response": []
+				},
+				{
+					"name": "deleteClient",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "localhost:3000/clients/fa997238-23c4-4292-9e64-58aa068e465d/updateName"
+					},
+					"response": []
+				},
+				{
+					"name": "updateName",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"name atualizado\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:3000/clients/fa997238-23c4-4292-9e64-58aa068e465d/updateName/updateName"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

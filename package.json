@@ -8,6 +8,8 @@
     "dotenv": "^11.0.0",
     "eslint-config-airbnb-typescript": "^16.1.0",
     "express": "^4.17.2",
+    "joi": "^17.5.0",
+    "moment": "^2.29.1",
     "pg": "^8.7.1",
     "reflect-metadata": "^0.1.13",
     "supertest": "^6.2.1",

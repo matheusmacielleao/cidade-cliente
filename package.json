@@ -2,7 +2,8 @@
   "scripts": {
     "test": " cross-env CONNECTION_NAME=tests jest --coverage --runInBand --detectOpenHandles",
     "dev": " cross-env CONNECTION_NAME=default ts-node-dev --transpile-only src/server.ts",
-    "typeorm": "ts-node-dev node_modules/typeorm/cli.js"
+    "typeorm": "ts-node-dev node_modules/typeorm/cli.js",
+    "start": "cross-env NODE_ENV=user ts-node --transpile-only src/server.ts"
   },
   "dependencies": {
     "dotenv": "^11.0.0",

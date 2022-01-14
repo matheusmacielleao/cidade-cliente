@@ -38,5 +38,25 @@
     "entitiesDir": "src/app/entities",
     "migrationsDir": "src/app/migrations"
  }
-}
+},
+{
+   "name": "user",
+   "type": "postgres",
+   "host": "localhost",
+   "port": 5432,
+   "username": "postgres",
+   "password": "docker",
+   "database": "cidade-clienteUser",
+   "synchronize": true,
+   "entities": [
+     "src/app/entities/*.ts"
+  ],
+  "migrations": [
+     "src/app/migrations/*.ts"
+  ],
+  "cli": {
+     "entitiesDir": "src/app/entities",
+     "migrationsDir": "src/app/migrations"
+  }
+ }
 ]

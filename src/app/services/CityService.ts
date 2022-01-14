@@ -4,7 +4,7 @@ import {City} from '../entities/City';
 const cityRepository = new CityRepository();
 
 export class CityService {
-  async create(payload): Promise<City | Error> {
+  async create(payload: City): Promise<City> {
     const city = await cityRepository.create(payload);
     return city;
   }

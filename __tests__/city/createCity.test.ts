@@ -38,6 +38,15 @@ describe('src :: api :: controllers :: city :: create', () => {
     };
     await request(app).post('/cities').send(city);
     const response = await request(app).post('/cities').send(city);
+
+    expect(response.status).toBe(400);
+  });
+  test('should not create a city without name or state', async () => {
+    const city = {
+      'name': 'Pernanbuco'
+    };
+    await request(app).post('/cities').send(city);
+    const response = await request(app).post('/cities').send(city);
     
     expect(response.status).toBe(400);
   });

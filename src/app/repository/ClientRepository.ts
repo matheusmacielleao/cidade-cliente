@@ -4,7 +4,7 @@ import {NotExists} from '../errors/NotExists';
 import {paginateSerialize} from '../serializer/clientSerializer';
 
 class ClientRepository {
-  async create(payload) : Promise<Client | Error > {
+  async create(payload) : Promise<Client> {
     const repo = getConnection(process.env.CONNECTION_NAME).getRepository(Client);
     const {name, gender, birthdate, cityId} = payload;
     const client = repo.create({name, gender, birthdate, cityId});
@@ -12,7 +12,7 @@ class ClientRepository {
     return client;
   }
 
-  async find(payload) : Promise<{} | Error > {
+  async find(payload) : Promise<any> {
     const repo = getConnection(process.env.CONNECTION_NAME).getRepository(Client);
     const {page = 1, limit = 100, ...where} = payload;
     const filter = {where, skip: ((page-1)*limit), take: limit};

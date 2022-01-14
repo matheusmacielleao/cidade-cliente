@@ -3,7 +3,7 @@ import {City} from '../entities/City';
 import {CityEqualName} from '../errors/CityEqualName';
 
 class CityRepository {
-  async create(payload ) : Promise<City | Error > {
+  async create(payload ) : Promise<City> {
     const repo = getConnection(process.env.CONNECTION_NAME).getRepository(City);
     const {name, state} = payload;
     const exists = await repo.findOne({name: name});
@@ -15,7 +15,7 @@ class CityRepository {
     return city;
   }
 
-  async find(payload) : Promise<{} | Error > {
+  async find(payload) : Promise<any> {
     const repo = getConnection(process.env.CONNECTION_NAME).getRepository(City);
     const {page = 1, limit = 100, ...where} = payload;
     const filter = {where, skip: ((page-1)*limit), take: limit};

@@ -1,10 +1,11 @@
 {
   "scripts": {
-    "test": "jest --coverage --runInBand --detectOpenHandles",
-    "dev": "ts-node-dev --transpile-only src/server.ts",
+    "test": " cross-env CONNECTION_NAME=tests jest --coverage --runInBand --detectOpenHandles",
+    "dev": " cross-env CONNECTION_NAME=default ts-node-dev --transpile-only src/server.ts",
     "typeorm": "ts-node-dev node_modules/typeorm/cli.js"
   },
   "dependencies": {
+    "dotenv": "^11.0.0",
     "eslint-config-airbnb-typescript": "^16.1.0",
     "express": "^4.17.2",
     "pg": "^8.7.1",
@@ -20,6 +21,7 @@
     "@types/uuid": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "^5.9.0",
     "@typescript-eslint/parser": "^5.9.0",
+    "cross-env": "^7.0.3",
     "eslint": "^8.6.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-google": "^0.14.0",

@@ -35,7 +35,6 @@ class ClientRepository {
     const client = await repo.findOne(id);
     client.name = name ? name:client.name;
     await repo.save(client);
-
     return client;
   }
 }

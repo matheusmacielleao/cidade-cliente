@@ -33,8 +33,8 @@ class ClientController {
 
   async updateName(request: Request, response: Response) {
     try {
-      await clientService.updateName(request.params.id, request.body.name);
-      return response.status(204).json({});
+      const result = await clientService.updateName(request.params.id, request.body.name);
+      return response.status(200).json(result);
     } catch (err) {
       return response.status(400).json(err);
     }

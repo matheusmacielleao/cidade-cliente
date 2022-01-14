@@ -6,13 +6,13 @@ import {v4 as uuid} from 'uuid';
 @Entity('cities')
 class City {
   @PrimaryColumn()
-    id:string;
+    id!:string;
 
   @Column()
-    name:string;
+    name!:string;
 
   @Column()
-    state:string;
+    state!:string;
 
   constructor() {
     if (!this.id) {

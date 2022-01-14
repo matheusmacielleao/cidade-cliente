@@ -18,6 +18,9 @@ export class ClientService {
     return client;
   }
   async updateName(id, name) {
+    if (!name) {
+      throw new Error('name must be provided');
+    }
     const client = await clientRepository.updateName(id, name);
     return client;
   }

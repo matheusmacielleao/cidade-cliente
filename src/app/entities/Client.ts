@@ -6,23 +6,23 @@ import {City} from './City';
 @Entity('clients')
 class Client {
   @PrimaryColumn()
-    id: string;
+    id!: string;
 
   @Column()
-    name: string;
+    name!: string;
 
   @Column()
-    gender: string;
+    gender!: string;
 
   @Column()
-    cityId: string;
+    cityId!: string;
 
   @ManyToOne(() => City)
   @JoinColumn({name: 'cityId'})
-    city: City;
+    city!: City;
 
   @CreateDateColumn()
-    birthdate: Date;
+    birthdate!: Date;
 
   constructor() {
     if (!this.id) {

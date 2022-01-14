@@ -15,7 +15,8 @@ afterAll(async () => {
   }
 })
 
-describe('src :: api :: controllers :: client :: create', () => {
+describe('src :: api :: controllers :: client :: updateName', () => {
+ 
   test('should update a client name', async () => {
     const responseCity = await request(app).post('/cities').send(
         {name: 'Brasilia', state: 'DF'});
@@ -33,12 +34,33 @@ describe('src :: api :: controllers :: client :: create', () => {
     const updateName =await request(app).put(`/clients/${body.id}/updateName`).send({'name':'Matheus Leão'})
     const bodyUpdated =updateName.body;
     
-    expect(updateName.status).toBe(201);
+    expect(updateName.status).toBe(200);
     expect(bodyUpdated.id).toBe(body.id);
     expect(bodyUpdated.name).toBe('Matheus Leão');
     expect(bodyUpdated.gender).toBe(body.gender);
     expect(bodyUpdated.cityId).toBe(body.cityId);
     expect(bodyUpdated.birthdate).toBe(body.birthdate);
   });
+
+  test('should not be able to update without name', async () => {
+    const responseCity = await request(app).post('/cities').send(
+        {name: 'Brasilia', state: 'DF'});
+    const {id} = responseCity.body;
+    const teste = {
+      'name': 'Matheus',
+      'gender': 'M',
+      'cityId': id,
+      'birthdate': '2014-01-01',
+    };
+
+    const response = await request(app).post('/clients').send(teste);
+    const {body} = response;
+
+    const updateName =await request(app).put(`/clients/${body.id}/updateName`).send()
+    const bodyUpdated =updateName.body;
+    
+    expect(updateName.status).toBe(400);
+  });
+
 
 });

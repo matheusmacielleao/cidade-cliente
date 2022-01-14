@@ -1,7 +1,8 @@
 import {
   Entity, Column, PrimaryColumn,
 } from 'typeorm';
-import {v4 as uuid} from 'uuid';
+import {randomUUID} from 'crypto';
+
 
 @Entity('cities')
 class City {
@@ -16,7 +17,7 @@ class City {
 
   constructor() {
     if (!this.id) {
-      this.id = uuid();
+      this.id = randomUUID();
     }
   }
 }

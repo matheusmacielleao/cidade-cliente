@@ -1,6 +1,7 @@
 import {Entity, Column, PrimaryColumn, ManyToOne, JoinColumn, CreateDateColumn}
   from 'typeorm';
-import {v4 as uuid} from 'uuid';
+import {randomUUID} from 'crypto';
+
 import {City} from './City';
 
 @Entity('clients')
@@ -26,7 +27,7 @@ class Client {
 
   constructor() {
     if (!this.id) {
-      this.id = uuid();
+      this.id = randomUUID();
     }
   }
 }

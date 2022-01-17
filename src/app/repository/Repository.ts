@@ -41,7 +41,7 @@ class Repository<Query extends Pagination, Content> {
     if (!content) {
       throw new Error('notfound');
     }
-    const result = await repo.createQueryBuilder().update(this.repository, payload).where('id = :id', {id}).returning('*').updateEntity(true).execute().then((response: any) => {
+    const result = await repo.createQueryBuilder().update(this.repository, payload).where('id = :id', {id}).returning('*').updateEntity(true).execute().then((response) => {
       return response.raw[0];
     });
 

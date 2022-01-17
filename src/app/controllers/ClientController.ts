@@ -1,5 +1,5 @@
 import {Request, Response} from 'express';
-import {serialize} from '../serializer/clientSerializer';
+import {paginateSerialize, serialize} from '../serializer/clientSerializer';
 
 import {ClientService} from '../services/ClientService';
 
@@ -18,7 +18,7 @@ class ClientController {
   async find(request: Request, response: Response) {
     try {
       const result = await clientService.find(request.query);
-      return response.status(200).json(result);
+      return response.status(200).json(paginateSerialize(result));
     } catch (err) {
       return response.status(400).json(err);
     }

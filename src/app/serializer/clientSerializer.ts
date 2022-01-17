@@ -1,4 +1,5 @@
 import {Client} from '../entities/Client';
+import {Paginated} from '../interfaces/Paginated';
 
 const moment = require('moment');
 
@@ -11,8 +12,8 @@ const serialize = ({id, name, gender, birthdate, cityId} : Client)=>({
 
 });
 
-const paginateSerialize = ({clients, limit, total, offset, skip}) => ({
-  clients: clients.map(serialize),
+const paginateSerialize = ({docs, limit, total, offset, skip} : Paginated<Client>) => ({
+  clients: docs.map(serialize),
   limit,
   total,
   offset,

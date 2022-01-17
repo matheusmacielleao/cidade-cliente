@@ -47,7 +47,7 @@
    "username": "postgres",
    "password": "docker",
    "database": "cidade-clienteUser",
-   "synchronize": true,
+   "synchronize": false,
    "entities": [
      "src/app/entities/*.ts"
   ],

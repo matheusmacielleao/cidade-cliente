@@ -16,7 +16,7 @@ export class ClientService {
     const client = await ClientRepository.find(payload);
     return client;
   }
-  async delete(id : string): Promise<any> {
+  async delete(id : string): Promise<void> {
     await ClientRepository.delete(id);
   }
   async updateName(id:string, payload:string): Promise<Client> {

@@ -3,6 +3,7 @@ import moment from 'moment';
 import {Client} from '../entities/Client';
 import {ClientQuery} from '../interfaces/client/ClientQuery';
 import {Paginated} from '../interfaces/Paginated';
+import NotFound from '../errors/NotFound';
 
 
 export class ClientService {
@@ -17,6 +18,8 @@ export class ClientService {
     return client;
   }
   async delete(id : string): Promise<void> {
+    const exists = await ClientRepository.findOne({id});
+    if (exists=== undefined) throw new NotFound('Client not found');
     await ClientRepository.delete(id);
   }
   async updateName(id:string, payload:string): Promise<Client> {

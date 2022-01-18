@@ -33,7 +33,6 @@ describe('src :: api :: controllers :: city :: find', () => {
   test('should return nothing with invalid query params', async () => {
 
     const response = await request(app).get('/cities/?invalidparam=invalid');
-
     expect(response.status).toBe(400);
   });
 });

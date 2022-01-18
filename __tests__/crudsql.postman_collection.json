@@ -82,9 +82,25 @@
 				{
 					"name": "deleteClient",
 					"request": {
-						"method": "DELETE",
+						"method": "GET",
 						"header": [],
-						"url": "localhost:3000/clients/fa997238-23c4-4292-9e64-58aa068e465d/updateName"
+						"url": {
+							"raw": "localhost:3000/clients/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"clients",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
 					},
 					"response": []
 				},
@@ -102,7 +118,23 @@
 								}
 							}
 						},
-						"url": "localhost:3000/clients/fa997238-23c4-4292-9e64-58aa068e465d/updateName/updateName"
+						"url": {
+							"raw": "localhost:3000/clients/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"clients",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
 					},
 					"response": []
 				}

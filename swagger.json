@@ -1,158 +1,165 @@
 {
-  "swagger": "2.0",
+  "openapi": "3.0.0",
   "info": {
-    "version": "1.0",
     "title": "crudsql",
-    "contact": {}
+    "contact": {},
+    "version": "1.0"
   },
-  "host": "localhost:3000",
-  "basePath": "/",
-  "securityDefinitions": {},
-  "schemes": [
-    "https"
-  ],
-  "consumes": [
-    "application/json"
-  ],
-  "produces": [
-    "application/json"
+  "jsonSchemaDialect": "http://json-schema.org/draft/2020-12/schema",
+  "servers": [
+    {
+      "url": "127.0.0.1:3000/",
+      "description": "Servidor da aplicação"
+    },
+    {
+      "url": "localhost:3000/",
+      "description": "Servidor da aplicação"
+    }
   ],
   "paths": {
     "/cities": {
       "post": {
-        "summary": "createCity",
         "tags": [
           "cities"
         ],
+        "summary": "createCity",
         "operationId": "createCity",
-        "deprecated": false,
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "Body",
-            "in": "body",
-            "required": true,
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/createCityRequest"
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/createCityRequest"
+              },
+              "example": {
+                "name": "Pernanbuco",
+                "state": "CE"
+              }
             }
-          }
-        ],
+          },
+          "required": true
+        },
         "responses": {
           "200": {
             "description": "",
             "headers": {}
           }
-        }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "http://localhost:3000",
+            "variables": {}
+          }
+        ]
       },
       "get": {
-        "summary": "getCities",
         "tags": [
           "cities"
         ],
+        "summary": "getCities",
         "operationId": "getCities",
-        "deprecated": false,
-        "produces": [
-          "application/json"
+        "parameters": [{"name":"name","type":"string","in":"query"}
+          ,{"name":"state","type":"string","in":"query"}
         ],
-        "parameters": [],
         "responses": {
           "200": {
             "description": "",
             "headers": {}
           }
-        }
-      }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "http://localhost:3000",
+            "variables": {}
+          }
+        ]
+      },
+      "parameters": []
     },
     "/clients": {
       "post": {
-        "summary": "createClient",
         "tags": [
           "clients"
         ],
+        "summary": "createClient",
         "operationId": "createClient",
-        "deprecated": false,
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "Body",
-            "in": "body",
-            "required": true,
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/createClientRequest"
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/createClientRequest"
+              },
+              "example": {
+                "name": "Matheus Maciel Leão",
+                "gender": "M",
+                "cityId": "dd45b3f7-4960-4bae-81f1-56329c0e213f",
+                "birthdate": "01/01/2014"
+              }
             }
-          }
-        ],
+          },
+          "required": true
+        },
         "responses": {
           "200": {
             "description": "",
             "headers": {}
           }
-        }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "http://localhost:3000",
+            "variables": {}
+          }
+        ]
       },
       "get": {
+        "tags": [
+          "clients"
+        ],
         "summary": "getClient",
-        "tags": [
-          "clients"
-        ],
         "operationId": "getClient",
-        "deprecated": false,
-        "produces": [
-          "application/json"
-        ],
         "parameters": [],
         "responses": {
           "200": {
             "description": "",
             "headers": {}
           }
-        }
-      }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "http://localhost:3000",
+            "variables": {}
+          }
+        ]
+      },
+      "parameters": []
     },
-    "/clients/fa997238-23c4-4292-9e64-58aa068e465d/updateName": {
+    "/{id}": {
       "delete": {
+        "tags": [
+          "clients"
+        ],
         "summary": "deleteClient",
-        "tags": [
-          "clients"
-        ],
         "operationId": "deleteClient",
-        "deprecated": false,
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "",
-            "headers": {}
-          }
-        }
-      }
-    },
-    "/clients/fa997238-23c4-4292-9e64-58aa068e465d/updateName/updateName": {
-      "put": {
-        "summary": "updateName",
-        "tags": [
-          "clients"
-        ],
-        "operationId": "updateName",
-        "deprecated": false,
-        "produces": [
-          "application/json"
-        ],
         "parameters": [
           {
-            "name": "Body",
-            "in": "body",
-            "required": true,
+            "name": "id",
+            "in": "path",
             "description": "",
+            "required": true,
+            "style": "simple",
             "schema": {
-              "$ref": "#/definitions/updateNameRequest"
+              "type": "string",
+              "examples": [
+                "null"
+              ]
             }
           }
         ],
@@ -161,75 +168,140 @@
             "description": "",
             "headers": {}
           }
-        }
-      }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "http://localhost:3000/clients",
+            "variables": {}
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "clients"
+        ],
+        "summary": "updateName",
+        "operationId": "updateName",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "examples": [
+                "null"
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/updateNameRequest"
+              },
+              "example": {
+                "name": "name atualizado"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "http://localhost:3000/clients",
+            "variables": {}
+          }
+        ]
+      },
+      "parameters": []
     }
   },
-  "definitions": {
-    "createCityRequest": {
-      "title": "createCityRequest",
-      "example": {
-        "name": "Pernanbuco",
-        "state": "CE"
-      },
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
+  "components": {
+    "schemas": {
+      "createCityRequest": {
+        "title": "createCityRequest",
+        "required": [
+          "name",
+          "state"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          }
         },
-        "state": {
-          "type": "string"
-        }
+        "examples": [
+          {
+            "name": "Pernanbuco",
+            "state": "CE"
+          }
+        ]
       },
-      "required": [
-        "name",
-        "state"
-      ]
-    },
-    "createClientRequest": {
-      "title": "createClientRequest",
-      "example": {
-        "name": "Matheus Maciel Leão",
-        "gender": "M",
-        "cityId": "dd45b3f7-4960-4bae-81f1-56329c0e213f",
-        "birthdate": "01/01/2014"
-      },
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
+      "createClientRequest": {
+        "title": "createClientRequest",
+        "required": [
+          "name",
+          "gender",
+          "cityId",
+          "birthdate"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "gender": {
+            "type": "string"
+          },
+          "cityId": {
+            "type": "string"
+          },
+          "birthdate": {
+            "type": "string"
+          }
         },
-        "gender": {
-          "type": "string"
+        "examples": [
+          {
+            "name": "Matheus Maciel Leão",
+            "gender": "M",
+            "cityId": "dd45b3f7-4960-4bae-81f1-56329c0e213f",
+            "birthdate": "01/01/2014"
+          }
+        ]
+      },
+      "updateNameRequest": {
+        "title": "updateNameRequest",
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          }
         },
-        "cityId": {
-          "type": "string"
-        },
-        "birthdate": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "name",
-        "gender",
-        "cityId",
-        "birthdate"
-      ]
-    },
-    "updateNameRequest": {
-      "title": "updateNameRequest",
-      "example": {
-        "name": "name atualizado"
-      },
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "name"
-      ]
+        "examples": [
+          {
+            "name": "name atualizado"
+          }
+        ]
+      }
     }
   },
   "tags": [

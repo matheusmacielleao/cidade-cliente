@@ -23,8 +23,6 @@
 
 ## 💻 Requirements
 
-<!---Estes são apenas requisitos de exemplo. Adicionar, duplicar ou remover conforme necessário--->
-
 - Javascript
 - PostgresSql
 - NodeJS
@@ -46,7 +44,7 @@ Fill the ormconfig file with your database info.
 
 Then Run
 ```
-yarn typeorm migration:run -c ''ormcongig connection name ''
+yarn typeorm migration:run -c ''ormconfig-connection-name ''
 ```
 
 ##EXEC

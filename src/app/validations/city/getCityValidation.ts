@@ -9,7 +9,7 @@ export = (req: Request, res: Response, next: NextFunction) => {
       state: Joi.string().trim().optional(),
     });
 
-    const {error} = entity.validate(req.params, {abortEarly: false});
+    const {error} = entity.validate(req.query, {abortEarly: false});
 
     if (error) throw error;
 

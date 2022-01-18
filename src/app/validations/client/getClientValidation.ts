@@ -5,14 +5,14 @@ import {serialize} from '../../serializer/joiErrorSerializer';
 export = (req: Request, res: Response, next: NextFunction) => {
   try {
     const entity = Joi.object({
-      cityId: Joi.string().uuid().optional,
-      name: Joi.string().trim().optional,
-      gender: Joi.string().trim().optional,
-      birthdate: Joi.date().optional,
+      cityId: Joi.string().uuid().optional(),
+      name: Joi.string().trim().optional(),
+      gender: Joi.string().trim().optional(),
+      birthdate: Joi.date().optional(),
 
     });
 
-    const {error} = entity.validate(req.params, {abortEarly: false});
+    const {error} = entity.validate(req.query, {abortEarly: false});
 
     if (error) throw error;
 

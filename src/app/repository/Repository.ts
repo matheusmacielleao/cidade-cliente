@@ -1,5 +1,5 @@
 import {EntityTarget, getConnection} from 'typeorm';
-import {NotExists} from '../errors/NotExists';
+import NotFound from '../errors/NotFound';
 import {Paginated} from '../interfaces/Paginated';
 import {Pagination} from '../interfaces/Pagination';
 
@@ -29,7 +29,7 @@ class Repository<Query extends Pagination, Content> {
     const repo = getConnection(process.env.CONNECTION_NAME ).getRepository(this.repository);
     const existContent = await repo.findOne(id);
     if (!existContent) {
-      throw new NotExists('Content');
+      throw new NotFound(id);
     }
     const deleteResult = await repo.delete(id);
     return deleteResult;
@@ -39,7 +39,7 @@ class Repository<Query extends Pagination, Content> {
     const repo =getConnection(process.env.CONNECTION_NAME ).getRepository(this.repository);
     const content = await repo.findOne(id) as Content;
     if (!content) {
-      throw new Error('notfound');
+      throw new NotFound('id');
     }
     const result = await repo.createQueryBuilder().update(this.repository, payload).where('id = :id', {id}).returning('*').updateEntity(true).execute().then((response) => {
       return response.raw[0];

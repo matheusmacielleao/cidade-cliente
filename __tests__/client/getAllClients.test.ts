@@ -25,11 +25,17 @@ describe('src :: api :: controllers :: client :: find', () => {
 
     
   });
+  test('should work with  query params', async () => {
+
+    const response = await request(app).get('/clients/?name=pernanbuco');
+  
+    expect(response.status).toBe(200);
+    });
 
   test('should return nothing with invalid query params', async () => {
 
     const response = await request(app).get('/clients/?invalidparam=invalid');
   
-    expect(response.status).toBe(400);
+    expect(response.status).toBe(500);
     });
 });

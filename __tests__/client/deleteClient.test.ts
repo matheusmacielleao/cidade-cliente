@@ -32,9 +32,13 @@ describe('src :: api :: controllers :: client :: create', () => {
     const responseDelete = await request(app).delete(`/clients/${idClient}`);
     expect(responseDelete.status).toBe(204);
   });
+  test('should return 400 when id format is invalid', async () => {
+    const responseDelete = await request(app).delete(`/clients/kkkk`);
+    expect(responseDelete.status).toBe(400);
+  });
 
   test('should return 404 when id does not correspond to any client', async () => {
-    const responseDelete = await request(app).delete(`/clients/qualquerid`);
+    const responseDelete = await request(app).delete(`/clients/dd45b3f7-4960-4bae-81f1-56329c0e213f`);
     expect(responseDelete.status).toBe(404);
   });
 });

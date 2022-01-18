@@ -12,7 +12,7 @@ export = (req: Request, res: Response, next: NextFunction) => {
 
     });
 
-    const {error} = entity.validate(req.query, {abortEarly: false});
+    const {error} = entity.validate(req.params, {abortEarly: false});
 
     if (error) throw error;
 

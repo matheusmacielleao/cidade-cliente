@@ -24,4 +24,4 @@ class CityController {
   }
 }
 
-export {CityController};
+export default new CityController;

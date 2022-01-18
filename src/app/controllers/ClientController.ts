@@ -42,4 +42,4 @@ class ClientController {
   }
 }
 
-export {ClientController};
+export default new ClientController();

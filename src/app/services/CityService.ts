@@ -8,9 +8,8 @@ import {CityEqualName} from '../errors/CityEqualName';
 export class CityService {
   async create(payload: City): Promise<City> {
     const exists = await CityRepository.findOne({name: payload.name});
-    if (exists) {
-      throw new CityEqualName();
-    }
+    if (exists) throw new CityEqualName();
+
     const city = await CityRepository.create(payload);
     return city;
   }

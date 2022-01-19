@@ -6,6 +6,7 @@
     "start": "cross-env CONNECTION_NAME=user ts-node --transpile-only src/server.ts"
   },
   "dependencies": {
+    "@joi/date": "^2.1.0",
     "cors": "^2.8.5",
     "dotenv": "^11.0.0",
     "eslint-config-airbnb-typescript": "^16.1.0",

@@ -1,5 +1,5 @@
 import {Request, Response, NextFunction} from 'express';
-import Joi from 'joi';
+const Joi = require('joi').extend(require('@joi/date'));
 import {serialize} from '../../serializer/joiErrorSerializer';
 
 export = (req: Request, res: Response, next: NextFunction) => {
@@ -8,7 +8,7 @@ export = (req: Request, res: Response, next: NextFunction) => {
       cityId: Joi.string().uuid().required(),
       name: Joi.string().trim().required(),
       gender: Joi.string().trim().required(),
-      birthdate: Joi.date().required(),
+      birthdate: Joi.date().format('DD/MM/YYYY').required(),
 
     });
 

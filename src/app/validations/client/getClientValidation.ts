@@ -5,10 +5,10 @@ import {serialize} from '../../serializer/joiErrorSerializer';
 export = (req: Request, res: Response, next: NextFunction) => {
   try {
     const entity = Joi.object({
-      cityId: Joi.string().uuid().optional(),
-      name: Joi.string().trim().optional(),
-      gender: Joi.string().trim().optional(),
-      birthdate: Joi.date().optional(),
+      cityId: Joi.string().uuid(),
+      name: Joi.string().trim(),
+      gender: Joi.string().trim(),
+      birthdate: Joi.date(),
 
     });
 

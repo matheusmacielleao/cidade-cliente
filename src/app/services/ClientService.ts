@@ -8,6 +8,7 @@ import {Paginated} from '../interfaces/Paginated';
 export class ClientService {
   async create(payload : Client): Promise<Client> {
     payload.birthdate = new Date(moment(payload.birthdate, 'DD/MM/YYYY').format('YYYY-MM-DD'));
+    payload.gender = payload.gender.toUpperCase();
     const client = await ClientRepository.create(payload);
     return client;
   }

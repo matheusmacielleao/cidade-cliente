@@ -5,8 +5,8 @@ import {serialize} from '../../serializer/joiErrorSerializer';
 export = (req: Request, res: Response, next: NextFunction) => {
   try {
     const entity = Joi.object({
-      name: Joi.string().trim().optional(),
-      state: Joi.string().trim().optional(),
+      name: Joi.string().trim(),
+      state: Joi.string().valid(enumUf).trim(),
     });
 
     const {error} = entity.validate(req.query, {abortEarly: false});

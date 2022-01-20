@@ -1,4 +1,4 @@
-const uF = [
+const validStates = [
   'AC',
   'AL',
   'AP',
@@ -28,4 +28,4 @@ const uF = [
   'TO',
 ];
 
-export default uF;
+export {validStates};

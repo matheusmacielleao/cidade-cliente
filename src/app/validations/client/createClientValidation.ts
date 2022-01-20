@@ -7,7 +7,7 @@ export = (req: Request, res: Response, next: NextFunction) => {
     const entity = Joi.object({
       cityId: Joi.string().uuid().required(),
       name: Joi.string().trim().required(),
-      gender: Joi.string().trim().required(),
+      gender: Joi.string().valid('M', 'F', 'O').trim().required(),
       birthdate: Joi.date().format('DD/MM/YYYY').required(),
 
     });
